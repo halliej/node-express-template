@@ -1,0 +1,26 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "A starter template for node/express apps",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "mocha --exit",
+    "coverage": "nyc --reporter=lcov npm test"
+  },
+  "author": "Hal DeLage",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "helmet": "^3.15.1",
+    "method-override": "^2.3.10"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "expect": "^24.1.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "supertest": "^3.0.0"
+  }
+}

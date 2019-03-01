@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "arrow-body-style": 0,
+    "no-underscore-dangle": 0,
+    "radix": 0,
+    "newline-after-import": 0,
+    "react/jsx-closing-bracket-location": 0
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  }
+}
