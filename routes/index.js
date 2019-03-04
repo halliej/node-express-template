@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 const log4js = require( "log4js" );
+const statistics = require('../util/statistics');
 log4js.configure( "./config/log4js.json" );
 const logger = log4js.getLogger( "routes" );
 
@@ -25,6 +26,24 @@ router.get('/errorTest', (req, res, next) => {
 router.post('/postTest', (req, res) => {
   logger.info('postTest');
   res.send('postTest');
+});
+
+router.get('/status', (req, res) => {
+  const status = statistics.getStatus();
+  logger.info(`status: ${status}`);
+  res.send(`${status}`);
+});
+
+router.get('/startDate', (req, res) => {
+  const startDate = statistics.getStartDate();
+  logger.info(`startDate: ${startDate}`);
+  res.send(`${startDate}`);
+});
+
+router.get('/version', (req, res) => {
+  const version = statistics.getVersion();
+  logger.info(`version`);
+  res.send(`${version}`);
 });
 
 router.get('/*', (req, res) => {

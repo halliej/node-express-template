@@ -4,6 +4,8 @@ const expect = require('expect');
 const request = require('supertest');
 
 const { app } = require('../app');
+const pjson = require('../package.json');
+const statistics = require('../util/statistics');
 
 describe('Template unit test', () => {
   it('should return the root message', (done) => {
@@ -58,6 +60,50 @@ describe('Template unit test', () => {
     request(app)
       .get('/errorTest')
       .expect(500)
+      .end((err) => {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('should return the correct version', (done) => {
+    request(app)
+      .get('/version')
+      .expect(200)
+      .expect('Content-Type', /text/)
+      .expect((res) => {
+        expect(res.text).toEqual(pjson.version);
+      })
+      .end((err) => {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('should return the start date', (done) => {
+    request(app)
+      .get('/startDate')
+      .expect(200)
+      .expect('Content-Type', /text/)
+      .expect((res) => {
+        expect(res.text).toEqual(statistics.getStartDate());
+      })
+      .end((err) => {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('should return status', (done) => {
+    const testStr = 'test status';
+    statistics.setStatus(testStr);
+    request(app)
+      .get('/status')
+      .expect(200)
+      .expect('Content-Type', /text/)
+      .expect((res) => {
+        expect(res.text).toEqual(statistics.getStatus());
+      })
       .end((err) => {
         if (err) return done(err);
         done();
