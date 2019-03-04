@@ -53,5 +53,15 @@ describe('Template unit test', () => {
         done();
       });
   });
+
+  it('should handle an uncaught express error', (done) => {
+    request(app)
+      .get('/errorTest')
+      .expect(500)
+      .end((err) => {
+        if (err) return done(err);
+        done();
+      });
+  });
   
 });
