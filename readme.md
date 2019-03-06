@@ -1,7 +1,11 @@
 
  # Starter template for node/express apps
 
-This template is a good starting place for a node/express application. It provides the basic structure for your application as well as modules for testing, security and logging.   
+This template is a good starting place for a node/express application. It provides the basic structure for your application as well as modules for testing, security and logging.  
+
+**Security**
+
+The template provides basic security through the [helmet](https://www.npmjs.com/package/helmet) module. 
 
 **Test**
 
