@@ -4,7 +4,9 @@
     "no-underscore-dangle": 0,
     "radix": 0,
     "newline-after-import": 0,
-    "react/jsx-closing-bracket-location": 0
+    "react/jsx-closing-bracket-location": 0,
+    "no-extra-semi": 1,
+    "no-unused-vars": 1
   },
   "env": {
     "node": true,

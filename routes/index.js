@@ -18,7 +18,7 @@ router.get('/getTest', (req, res) => {
   res.send('getTest');
 });
 
-router.get('/errorTest', (req, res, next) => {
+router.get('/errorTest', () => {
   logger.info('errorTest');
   throw new Error('Yikes');
 });
