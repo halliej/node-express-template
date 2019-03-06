@@ -3,7 +3,6 @@ const pjson = require('../package.json');
 
 module.exports = {
   status: '',
-  last5errors: [],
   startDate: '',
   getVersion() {
     return pjson.version;
