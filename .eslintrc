@@ -6,7 +6,10 @@
     "newline-after-import": 0,
     "react/jsx-closing-bracket-location": 0,
     "no-extra-semi": 1,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "no-use-before-define": 1,
+    "indent": ["error", 2],
+    "no-var": 1
   },
   "env": {
     "node": true,

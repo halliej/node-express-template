@@ -31,7 +31,7 @@ app.use(helmet());
 app.use(cors());
 app.use(indexRoutes);
 //Add a default route error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.send(`Express error: ${err}`);
 });
