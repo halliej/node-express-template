@@ -46,6 +46,11 @@ router.get('/version', (req, res) => {
   res.send(`${version}`);
 });
 
+router.get('/healthcheck', (req, res) => {
+  logger.info('healthcheck');
+  res.send('healthcheck');
+});
+
 router.get('/*', (req, res) => {
   logger.info('Invalid endpoint');
   res.status(404).send('Invalid endpoint');

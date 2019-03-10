@@ -109,5 +109,19 @@ describe('Template unit test', () => {
         done();
       });
   });
+
+  it('should handle a GET request to /healthcheck', (done) => {
+    request(app)
+      .get('/healthcheck')
+      .expect(200)
+      .expect('Content-Type', /text/)
+      .expect((res) => {
+        expect(res.text).toEqual('healthcheck');
+      })
+      .end((err) => {
+        if (err) return done(err);
+        done();
+      });
+  });
   
 });
