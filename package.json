@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "test": "jest --detectOpenHandles",
-    "coverage": "nyc --reporter=lcov npm test"
+    "test": "jest",
+    "coverage": "npm test -- --coverage"
   },
   "author": "Hal DeLage",
   "license": "ISC",
@@ -23,8 +23,6 @@
     "eslint": "^5.14.1",
     "expect": "^24.1.0",
     "jest": "^24.8.0",
-    "mocha": "^6.1.4",
-    "nyc": "^14.1.1",
     "supertest": "^3.0.0"
   }
 }
