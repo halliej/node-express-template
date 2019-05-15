@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const express = require('express');
+const app = require('express')();
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -15,7 +15,6 @@ const log4js = require( "log4js" );
 log4js.configure( "./config/log4js.json" );
 const logger = log4js.getLogger( "app" );
 
-const app = express();
 //apply security middleware
 app.use(helmet());
 //load routes
