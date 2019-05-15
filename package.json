@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "test": "mocha --exit",
+    "test": "jest --detectOpenHandles",
     "coverage": "nyc --reporter=lcov npm test"
   },
   "author": "Hal DeLage",

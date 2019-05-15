@@ -38,7 +38,7 @@ app.use(function(err, req, res, next) {
   next();
 });
 //Go to work
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
   logger.info(`${appName} running on port ${port}.`);
 });
 
@@ -48,4 +48,4 @@ app.listen(3000, () => {
 //   logger.error(`Uncaught exception: ${error}`);
 // });
 
-module.exports = { app };
+module.exports = { app, server };

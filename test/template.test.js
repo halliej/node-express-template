@@ -1,39 +1,35 @@
 /* eslint no-console: 0 */
 /* eslint import/no-extraneous-dependencies: 0 */
-const expect = require('expect');
 const request = require('supertest');
 
-const { app } = require('../app');
+const { app, server } = require('../app');
 const pjson = require('../package.json');
 const statistics = require('../util/statistics');
 
 describe('Template unit test', () => {
-  it('should return the root message', (done) => {
-    request(app)
+  test('should return the root message', async (done) => {
+    await request(app)
       .get('/')
       .expect(200)
       .expect((res) => {
         expect(res.text).toEqual('Welcome to template!');
-      })
-      .end(done);
+      });
+    done();
   });
 
-  it('should handle a GET request to /getTest', (done) => {
-    request(app)
+  test('should handle a GET request to /getTest', async (done) => {
+    await request(app)
       .get('/getTest')
       .expect(200)
       .expect('Content-Type', /text/)
       .expect((res) => {
         expect(res.text).toEqual('getTest');
-      })
-      .end((err) => {
-        if (err) return done(err);
-        done();
       });
+    done();
   });
 
-  it('should handle a POST request to /postTest', (done) => {
-    request(app)
+  test('should handle a POST request to /postTest', async (done) => {
+    await request(app)
       .post('/postTest')
       .set('Accept', /json/)
       .send({
@@ -42,86 +38,73 @@ describe('Template unit test', () => {
       .expect(200)
       .expect((res) => {
         expect(res.text).toEqual('postTest');
-      })
-      .end(done);
+      });
+    done();
   });
 
-  it('should return a 404 for bad request', (done) => {
-    request(app)
+  test('should return a 404 for bad request', async (done) => {
+    await request(app)
       .get('/fail')
-      .expect(404)
-      .end((err) => {
-        if (err) return done(err);
-        done();
-      });
+      .expect(404);
+    done();
   });
 
-  it('should handle an uncaught express error', (done) => {
-    request(app)
+  test('should handle an uncaught express error', async (done) => {
+    await request(app)
       .get('/errorTest')
-      .expect(500)
-      .end((err) => {
-        if (err) return done(err);
-        done();
-      });
+      .expect(500);
+    done();
   });
 
-  it('should return the correct version', (done) => {
-    request(app)
+  test('should return the correct version', async (done) => {
+    await request(app)
       .get('/version')
       .expect(200)
       .expect('Content-Type', /text/)
       .expect((res) => {
         expect(res.text).toEqual(pjson.version);
-      })
-      .end((err) => {
-        if (err) return done(err);
-        done();
       });
+    done();
   });
 
-  it('should return the start date', (done) => {
-    request(app)
+  test('should return the start date', async (done) => {
+    await request(app)
       .get('/startDate')
       .expect(200)
       .expect('Content-Type', /text/)
       .expect((res) => {
         expect(res.text).toEqual(statistics.getStartDate());
-      })
-      .end((err) => {
-        if (err) return done(err);
-        done();
       });
+    done();
   });
 
-  it('should return status', (done) => {
+  test('should return status', async (done) => {
     const testStr = 'test status';
     statistics.setStatus(testStr);
-    request(app)
+    await request(app)
       .get('/status')
       .expect(200)
       .expect('Content-Type', /text/)
       .expect((res) => {
         expect(res.text).toEqual(statistics.getStatus());
-      })
-      .end((err) => {
-        if (err) return done(err);
-        done();
       });
+    done();
   });
 
-  it('should handle a GET request to /healthcheck', (done) => {
-    request(app)
+  test('should handle a GET request to /healthcheck', async (done) => {
+    await request(app)
       .get('/healthcheck')
       .expect(200)
       .expect('Content-Type', /text/)
       .expect((res) => {
         expect(res.text).toEqual('healthcheck');
-      })
-      .end((err) => {
-        if (err) return done(err);
-        done();
       });
+    done();
+  });
+
+  afterAll(async done => {
+    await server.close();
+    done();
   });
   
 });
