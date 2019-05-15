@@ -1,12 +1,10 @@
 /* eslint no-console: 0 */
+const router = require('express').Router();
 const log4js = require( "log4js" );
-const statistics = require('../util/statistics');
 log4js.configure( "./config/log4js.json" );
 const logger = log4js.getLogger( "routes" );
 
-const express = require('express');
-
-const router = express.Router();
+const statistics = require('../util/statistics');
 
 router.get('/', (req, res) => {
   logger.info('root')
